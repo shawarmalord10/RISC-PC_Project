@@ -1,24 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 16.04.2025 01:17:03
-// Design Name: 
-// Module Name: hazard_unit
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module hazard_detection(
     input ID_EX_MemRead,
@@ -58,15 +38,15 @@ module data_forwarding(
     output reg [1:0] FA,FB
 );
     always @(*) begin
-        // Forwarding for RS (FA)
+        //forwarding for RS(FA)
         if (EX_MEM_RegWrite && !EX_MEM_MemRead && (EX_MEM_RD == ID_EX_RS)) 
-            FA = 2'b10; // Forward EX/MEM ALU result (but NOT for load instr)
+            FA = 2'b10; //forward EX/MEM ALU result (but NOT for load instr)
         else if (MEM_WB_RegWrite && (MEM_WB_RD == ID_EX_RS)) 
-            FA = 2'b01; // Forward MEM/WB data
+            FA = 2'b01; //forward MEM/WB data
         else 
             FA = 2'b00;
 
-        // Forwarding for RT (FB) - Similar logic
+        //forwarding RT(FB)
         if (EX_MEM_RegWrite && !EX_MEM_MemRead && (EX_MEM_RD == ID_EX_RT)) 
             FB = 2'b10;
         else if (MEM_WB_RegWrite && (MEM_WB_RD == ID_EX_RT)) 
