@@ -27,7 +27,7 @@ input clk
         if (EnIM)
             instr = {inst_mem[addr], inst_mem[addr+1], inst_mem[addr+2], inst_mem[addr+3]};
         else
-            instr = 32'h0; // Output NOP when disabled
+            instr = 32'h0; //Output NOP when disabled
     end
 endmodule 
 
@@ -116,11 +116,11 @@ input clk
             rd = {data_mem[addr], data_mem[addr + 1], data_mem[addr + 2], data_mem[addr + 3]}; 
         end
         else begin
-            rd = 32'h0; // Default value when not reading
+            rd = 32'h0;
         end
     end
     
-    // Sequential write
+    //Sequential write
     always @(posedge clk) begin 
         if (memwrite) begin 
             data_mem[addr] <= wd[31:24]; 
