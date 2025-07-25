@@ -1,24 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 15.04.2025 21:48:14
-// Design Name: 
-// Module Name: top
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module top( 
 ); 
@@ -129,7 +109,7 @@ data_forwarding forwarding(.EX_MEM_RegWrite(EX_MEM_RegWrite), .MEM_WB_RegWrite(M
     .ID_EX_RS(ID_EX_RS), .ID_EX_RT(ID_EX_RT),
     .FA(FA), .FB(FB) );
 
-//stages
+//stage update
 always@(posedge clk) begin //IF 
     if(PCWrite) begin
         IF_ID_IR<= instr;
@@ -138,7 +118,7 @@ always@(posedge clk) begin //IF
         end
     end 
 
-//Instruction Decoding Logic
+//instruction Decoding Logic
 assign opcode= IF_ID_IR[31:28]; 
 assign rd= IF_ID_IR[27:24]; 
 assign rs= IF_ID_IR[23:20]; 
